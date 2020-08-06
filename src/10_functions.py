@@ -10,3 +10,6 @@ num = int(num)
 
 # YOUR CODE HERE
 
+is_even = lambda n: "Even!" if n % 2 == 0 else "Odd!"
+
+print(is_even(num))
