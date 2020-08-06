@@ -27,6 +27,25 @@ print out a calendar for April in 2015, but if you omit either the year or both 
 it should use today’s date to get the month and year.
 """
 
-import sys
+from sys import argv, exit
+import datetime as dt
 import calendar
-from datetime import datetime
+
+def main():
+    today = dt.date.today()
+    cal = calendar.TextCalendar()
+    if len(argv) == 1:
+        cal.prmonth(today.year, today.month)
+    elif len(argv) == 2:
+        # assume the user passed in a month and render the calendar for that month of the current year
+        cal.prmonth(today.year, int(argv[1]))
+    elif len(argv) == 3:
+        # assume the user passed in month and year and render the calendar for that month and year
+        cal.prmonth(int(argv[2]), int(argv[1]))
+    else:
+        # print a usage statement to the terminal indicating the format that your program expects arguments to be given
+        # then exit the program
+        print(f'Usage: python 14_cal.py [month] [year]')
+        exit(0)
+
+main()
